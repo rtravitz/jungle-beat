@@ -1,10 +1,13 @@
 require "./linked_list.rb"
 
 class JungleBeat
-  attr_accessor :list
+  attr_accessor :list, :voice, :rate
 
-  def initialize
+  def initialize(input="")
     @list = LinkedList.new
+    @voice = "Boing"
+    @rate = 500
+    append(input)
   end
 
   def append(input)
@@ -20,13 +23,15 @@ class JungleBeat
 
   def play
     beats = @list.to_string
-    `say -r 500 -v Boing "#{beats}"`
+    `say -r #{@rate} -v #{@voice} "#{beats}"`
+  end
+
+  def reset_voice
+    @voice = "Boing"
+  end
+
+  def reset_rate
+    @rate = 500
   end
 
 end
-
-jb = JungleBeat.new
-jb.append("deep doo ditt woo hoo shu")
-puts jb.count
-puts jb.list.count
-jb.play
