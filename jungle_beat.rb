@@ -11,9 +11,16 @@ class JungleBeat
   end
 
   def append(input)
-    words = input.split
-    words.each do |word|
-      @list.append(word)
+    beats = validate(input)
+    beats.each do |beat|
+      @list.append(beat)
+    end
+  end
+
+  def prepend(input)
+    beats = validate(input).reverse
+    beats.each do |beat|
+      @list.prepend(beat)
     end
   end
 
@@ -22,8 +29,11 @@ class JungleBeat
   end
 
   def play
-    beats = @list.to_string
-    `say -r #{@rate} -v #{@voice} "#{beats}"`
+    `say -r #{@rate} -v #{@voice} "#{@list.to_string}"`
+  end
+
+  def all
+    @list.to_string
   end
 
   def reset_voice
@@ -32,6 +42,14 @@ class JungleBeat
 
   def reset_rate
     @rate = 500
+  end
+
+  def validate(beats)
+    approved = %w[tee dee deep bop boop la na]
+    output = beats.split.map do |beat|
+      beat if approved.include?(beat)
+    end
+    output.compact
   end
 
 end
