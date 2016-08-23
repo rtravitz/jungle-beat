@@ -1,4 +1,4 @@
-require "./node.rb"
+require "./lib/node.rb"
 
 class LinkedList
 
@@ -123,7 +123,7 @@ class LinkedList
     end
     saved = current_node.next_node
     current_node.next_node = nil
-    saved
+    saved.data
   end
 
 end

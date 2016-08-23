@@ -1,4 +1,4 @@
-require "./linked_list.rb"
+require "./lib/linked_list.rb"
 
 class JungleBeat
   attr_accessor :list, :voice, :rate
