@@ -4,22 +4,21 @@ class LinkedList
 
   attr_reader :head
 
-  def initialize(head = nil)
-      @head = head
+  def initialize
+      @head = nil
   end
 
   def append(data)
     new_node = Node.new(data)
-    @head.nil? ? @head = new_node : cycle_to_end("node").next_node = new_node
+    list_is_empty? ? @head = new_node : cycle_to_end("node").next_node = new_node
   end
 
-
   def count
-    @head.nil? ? 0 : cycle_to_end("return_count")
+    list_is_empty? ? 0 : cycle_to_end("return_count")
   end
 
   def prepend(data)
-    if @head.nil?
+    if list_is_empty?
       @head = Node.new(data)
     else
       old_head = @head
@@ -41,7 +40,7 @@ class LinkedList
   end
 
   def to_string
-    if @head.nil?
+    if list_is_empty?
       ""
     else
       current_node = @head
@@ -83,10 +82,22 @@ class LinkedList
   end
 
   def pop
-    current_node = cycle_to_position(count - 2)
-    saved = current_node.next_node
-    current_node.next_node = nil
-    saved.data
+    if list_is_empty?
+      nil
+    elsif count == 1
+      saved = @head
+      @head = nil
+      return saved.data
+    else
+      current_node = cycle_to_position(count - 2)
+      saved = current_node.next_node
+      current_node.next_node = nil
+      saved.data
+    end
+  end
+
+  def list_is_empty?
+    @head.nil? ? true : false
   end
 
   def cycle_to_end(mode)

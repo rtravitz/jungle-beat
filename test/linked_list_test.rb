@@ -153,13 +153,23 @@ class LinkedListTest < Minitest::Test
     assert_equal false, list.includes?("wheee")
   end
 
-  def test_pop_removes_last_element
+  def test_pop_removes_last_element_at_multiple_lengths
     list = LinkedList.new
+
+    assert_equal nil, list.pop
+
+    list.append("plop")
+    returned = list.pop
+
+    assert_equal "plop", returned
+    assert_equal nil, list.head
+
     list.append("plop")
     list.append("suu")
     list.append("dop")
-    list.pop
+    returned = list.pop
 
+    assert_equal "dop", returned
     assert_equal "plop suu", list.to_string
   end
 
@@ -204,5 +214,15 @@ class LinkedListTest < Minitest::Test
     output = list.format_text(output, "dop")
 
     assert_equal "plop suu dop", output
+  end
+
+  def test_list_is_empty_returns_correct_boolean
+    list = LinkedList.new
+
+    assert list.list_is_empty?
+
+    list.append("doop")
+
+    refute list.list_is_empty?
   end
 end
