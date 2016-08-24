@@ -35,18 +35,20 @@ class LinkedList
     if @head.nil?
       output
     elsif position.next_node.nil?
-      output += " #{position.data}"
-      output
-    else
-      if output == ""
+      if output.empty?
         output += "#{position.data}"
-        position = position.next_node
-        to_string(position, output)
       else
         output += " #{position.data}"
-        position = position.next_node
-        to_string(position, output)
       end
+      output
+    else
+      if output.empty?
+        output += "#{position.data}"
+      else
+        output += " #{position.data}"
+      end
+      position = position.next_node
+      to_string(position, output)
     end
   end
 
@@ -74,17 +76,49 @@ class LinkedList
         insert(spot, data, position, counter)
       end
     end
-
   end
 
+  def find(starting_spot, num_elements, position = @head, counter = 0, output = "")
+    if counter >= starting_spot
+      if (starting_spot + num_elements - 1) >= counter
+        if output.empty?
+          output += "#{position.data}"
+        else
+          output += " #{position.data}"
+        end
+        counter += 1
+        position = position.next_node
+        find(starting_spot, num_elements, position, counter, output)
+      else
+        output
+      end
+    else
+      counter += 1
+      position = position.next_node
+      find(starting_spot, num_elements, position, counter, output)
+    end
+  end
 
+  def includes?(query, position = @head)
+    if position.data == query
+      true
+    elsif position.next_node.nil?
+      false
+    else
+      position = position.next_node
+      includes?(query, position)
+    end
+  end
 
+  def pop(position = @head)
+    if position.next_node.next_node.nil?
+      old_node = position.next_node
+      position.next_node = nil
+      return old_node.data
+    else
+      position = position.next_node
+      pop(position)
+    end
+  end
 
 end
-
-list = LinkedList.new
-list.append("hey")
-list.append("sup")
-list.append("dawg")
-
-require "pry"; binding.pry
