@@ -172,4 +172,39 @@ class LinkedListTest < Minitest::Test
     assert_equal "dop", list.pop
   end
 
+  def test_cycle_to_end_reaches_final_node
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu")
+    list.append("dop")
+
+    current_node = list.cycle_to_end("node")
+    count = list.cycle_to_end("count")
+
+    assert_equal 3, count
+    assert_equal "dop", current_node.data
+  end
+
+  def test_cycle_to_position_reaches_appropriate_location
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu")
+    list.append("dop")
+
+    location = list.cycle_to_position(1)
+
+    assert_equal "suu", location.data
+  end
+
+  def test_it_can_get_nodes_surrounding_given_spot
+    skip
+    list = LinkedList.new
+    list.append("plop")
+    list.append("suu")
+    list.append("dop")
+
+
+    assert_equal "plop", list.get_nodes_at_spot(2)[0].data
+    assert_equal "suu", list.get_nodes_at_spot(2)[1].data
+  end
 end
