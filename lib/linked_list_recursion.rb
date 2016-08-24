@@ -5,7 +5,6 @@ class LinkedList
 
   def initialize
     @head = nil
-    @next = nil
   end
 
   def append(data, position = @head)
