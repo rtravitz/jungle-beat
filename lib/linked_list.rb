@@ -45,27 +45,27 @@ class LinkedList
       ""
     else
       current_node = @head
-      output = "#{@head.data}"
+      output = format_text(output, @head.data)
+
       until current_node.next_node.nil?
         current_node = current_node.next_node
-        output += " #{current_node.data}"
+        output = format_text(output, current_node.data)
       end
+
       output
     end
   end
 
   #catch error for when find searches for too many things and returns nil
   def find(starting_spot, num_elements)
-    output = ""
-
     current_node = cycle_to_position(starting_spot)
-    output += "#{current_node.data}"
+    output = format_text(output, current_node.data)
 
     position = 1
     current_node = current_node.next_node
 
     until position == num_elements
-        output += " #{current_node.data}"
+        output = format_text(output, current_node.data)
         current_node = current_node.next_node
         position += 1
     end
@@ -82,13 +82,8 @@ class LinkedList
     false
   end
 
-#does this need some sort of garbage collection to actually delete the element
-#if it is not assigned to a variable?
   def pop
-    current_node = @head
-    until current_node.next_node.next_node == nil
-      current_node = current_node.next_node
-    end
+    current_node = cycle_to_position(count - 2)
     saved = current_node.next_node
     current_node.next_node = nil
     saved.data
@@ -112,6 +107,15 @@ class LinkedList
       counter += 1
     end
     position
+  end
+
+  def format_text(current_text, additional_text)
+    if current_text == nil
+      current_text = "#{additional_text}"
+    else
+      current_text += " #{additional_text}"
+    end
+    current_text
   end
 
 end

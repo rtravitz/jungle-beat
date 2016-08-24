@@ -1,12 +1,13 @@
 require "./lib/linked_list.rb"
 
 class JungleBeat
-  attr_accessor :list, :voice, :rate
+  attr_accessor :voice, :rate
+  attr_reader :list
 
   def initialize(input="")
-    @list = LinkedList.new
-    @voice = "Boing"
-    @rate = 500
+    @list           = LinkedList.new
+    @voice          = "Boing"
+    @rate           = 500
     @approved_words = %w[tee dee deep bop boop la na]
     append(input)
   end

@@ -1,4 +1,4 @@
-require "./lib/jungle_beat"
+require "./lib/jungle_beat_recursion"
 require "minitest/autorun"
 require "minitest/pride"
 
@@ -27,6 +27,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_prepend_adds_multiple_items
+    skip
     jb = JungleBeat.new
     jb.append("la")
 
@@ -38,6 +39,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_count_returns_correct_count
+    skip
     jb = JungleBeat.new
 
     assert_equal 0, jb.count
@@ -48,6 +50,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_play_includes_correct_beats
+    skip
     jb = JungleBeat.new
     jb.append("tee dee deep")
 
@@ -55,6 +58,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_all_prints_all_beats
+    skip
     jb = JungleBeat.new
     jb.append("tee dee deep")
 
@@ -62,6 +66,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_voice_can_be_changed
+    skip
     jb = JungleBeat.new
 
     assert_equal "Boing", jb.voice
@@ -72,6 +77,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_rate_can_be_changed
+    skip
     jb = JungleBeat.new
 
     assert_equal 500, jb.rate
@@ -82,6 +88,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_reset_voice_returns_to_Boing
+    skip
     jb = JungleBeat.new
     jb.voice = "Alice"
 
@@ -93,6 +100,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_reset_rate_returns_to_500
+    skip
     jb = JungleBeat.new
     jb.rate = 100
 
@@ -104,6 +112,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_validate_only_allows_approved_beats
+    skip
     #approved beats include "tee dee deep bob boop la na"
     jb = JungleBeat.new
 
@@ -111,6 +120,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_validate_works_with_append
+    skip
     jb = JungleBeat.new
     jb.append("tee dee hey bop lol la")
 
@@ -118,6 +128,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_validate_works_with_prepend
+    skip
     jb = JungleBeat.new
     jb.prepend("tee dee hey bop lol la")
 
@@ -125,6 +136,7 @@ class JungleBeatTest < Minitest::Test
   end
 
   def test_all_prints_complete_list_of_beats
+    skip
     jb = JungleBeat.new
     jb.append("tee dee deep")
 

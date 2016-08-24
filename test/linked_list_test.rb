@@ -196,15 +196,13 @@ class LinkedListTest < Minitest::Test
     assert_equal "suu", location.data
   end
 
-  def test_it_can_get_nodes_surrounding_given_spot
-    skip
+  def test_format_text_returns_proper_value
     list = LinkedList.new
-    list.append("plop")
-    list.append("suu")
-    list.append("dop")
 
+    output = list.format_text(output, "plop")
+    output = list.format_text(output, "suu")
+    output = list.format_text(output, "dop")
 
-    assert_equal "plop", list.get_nodes_at_spot(2)[0].data
-    assert_equal "suu", list.get_nodes_at_spot(2)[1].data
+    assert_equal "plop suu dop", output
   end
 end
