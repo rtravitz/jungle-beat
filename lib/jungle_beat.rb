@@ -4,12 +4,13 @@ class JungleBeat
   attr_accessor :voice, :rate
   attr_reader :list
 
-  def initialize(input="")
+  def initialize(input = nil)
     @list           = LinkedList.new
     @voice          = "Boing"
     @rate           = 500
     @approved_words = %w[tee dee deep bop boop la na]
-    append(input)
+
+    @list.append(input) if input && @approved_words.include?(input)
   end
 
   def append(input)

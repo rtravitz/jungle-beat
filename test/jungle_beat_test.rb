@@ -16,6 +16,16 @@ class JungleBeatTest < Minitest::Test
     assert_instance_of LinkedList, jb.list
   end
 
+  def test_jungle_beat_can_initialize_with_data_on_approved_list
+    jb = JungleBeat.new("tee")
+
+    assert_equal "tee", jb.list.head.data
+
+    jb = JungleBeat.new("bearshark")
+
+    assert_equal nil, jb.list.head
+  end
+
   def test_append_adds_multiple_items
     jb = JungleBeat.new
 
