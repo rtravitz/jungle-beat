@@ -30,6 +30,8 @@ class LinkedList
   def insert(given_index, data)
     if given_index == 0
       prepend(data)
+    elsif given_index >= count
+      "This position does not exist to insert a new node."
     else
       before_inserted_node = cycle_to_position(given_index - 1)
       after_inserted_node = cycle_to_position(given_index)
@@ -62,12 +64,12 @@ class LinkedList
 
     position = 1
     current_node = current_node.next_node
-
     until position == num_elements
         output = format_text(output, current_node.data)
         current_node = current_node.next_node
         position += 1
     end
+
     output
   end
 
@@ -121,7 +123,7 @@ class LinkedList
   end
 
   def format_text(current_text, additional_text)
-    if current_text == nil
+    if current_text.nil?
       current_text = "#{additional_text}"
     else
       current_text += " #{additional_text}"

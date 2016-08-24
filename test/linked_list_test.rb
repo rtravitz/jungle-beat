@@ -92,8 +92,11 @@ class LinkedListTest < Minitest::Test
     list.append("plop")
     list.append("suu")
     list.append("dop")
+    list.insert(0, "hah")
     list.insert(1, "dip")
 
+
+    assert_equal "hah", list.head.data
     assert_equal "dip", list.head.next_node.data
   end
 
@@ -115,6 +118,14 @@ class LinkedListTest < Minitest::Test
     list.insert(1, "dip")
 
     assert_equal "dip", list.head.next_node.data
+  end
+
+  def test_insert_handles_index_greater_than_length
+    list = LinkedList.new
+    list.append("plop")
+    message = list.insert(5, "hello")
+
+    assert_equal "This position does not exist to insert a new node.", message
   end
 
   def test_find_starts_at_correct_position
