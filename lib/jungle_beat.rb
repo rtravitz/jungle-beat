@@ -7,6 +7,7 @@ class JungleBeat
     @list = LinkedList.new
     @voice = "Boing"
     @rate = 500
+    @approved_words = %w[tee dee deep bop boop la na]
     append(input)
   end
 
@@ -45,9 +46,8 @@ class JungleBeat
   end
 
   def validate(beats)
-    approved = %w[tee dee deep bop boop la na]
     output = beats.split.map do |beat|
-      beat if approved.include?(beat)
+      beat if @approved_words.include?(beat)
     end
     output.compact
   end

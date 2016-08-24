@@ -67,7 +67,7 @@ class LinkedList
 
   def to_string
     if @head == nil
-      puts ""
+      ""
     else
       current_node = @head
       output = "#{@head.data}"
