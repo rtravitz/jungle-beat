@@ -57,7 +57,6 @@ class LinkedList
     end
   end
 
-  #catch error for when find searches for too many things and returns nil
   def find(starting_spot, num_elements)
     current_node = cycle_to_position(starting_spot)
     output = format_text(output, current_node.data)
